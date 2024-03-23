@@ -289,106 +289,42 @@ class GriderLayout(GridLayout):
     pass
 class TestImage(Image):
     pass
-class FilterBox(BoxLayout):
-    pass
+# class FilterBox(BoxLayout):
+#     pass
 
 class Example(MDApp):
-
-
-    # def press(self, instance):
-    #     print("PRESSED")
-    #     print(self.__dict__)
-    #     print(self.root)
-    #     for child in self.root.children:
-    #         print(child)
 
     def build(self):
 
         Builder.load_file('kv_files/Kivy_CustomToggle.kv')
-        screen = TestScreen()
-        layout = FilterBox(orientation='vertical')
+        screen = Screen()
+        layout = BoxLayout(orientation='vertical')
         screen.add_widget(layout)
 
         data_tables = TestDataTable(column_data=[
             ("No.", dp(15)),
             ("Pub Name", dp(65)),
             ("Ranking", dp(25)),
-            ("Station", dp(50))])
+            ("Station", dp(50))],
+            sorted_on='Ranking',
+            sorted_order="DSC",
+            use_pagination=True,
+            size_hint=(1, 0.8))
 
-        bigbox = BoxLayout(orientation='horizontal', padding=20, spacing=20)
+        bigbox = BoxLayout(orientation='horizontal', padding=20, spacing=20, size_hint=(1, 0.2))
 
         quick_list = ['entertain', 'favourite', 'garden', 'music', 'quiz', 'roast', 'sport']
 
         for quick in quick_list:
             box10 = BoxLayout(orientation="vertical")
-            image10 = TestImage(source=f'images/icons/{quick}.png')
-            btn10 = ToggleButton(text=f'{quick}')
+            image10 = TestImage(source=f'images/icons/{quick}.png', size_hint=(1, 0.7))
+            btn10 = ToggleButton(text=f'{quick}', size_hint=(1, 0.3))
             btn10.bind(on_press=partial(data_tables.on_toggle_xxx, quick))
             box10.add_widget(image10)
             box10.add_widget(btn10)
             bigbox.add_widget(box10)
 
-        # box0 = BoxLayout(orientation="vertical")
-        # image0 = TestImage(source='images/icons/entertain.png')
-        # btn0 = ToggleButton(text='entertain')
-        # btn0.bind(on_press=partial(data_tables.on_toggle_xxx, 'entertain'))
-        # box0.add_widget(image0)
-        # box0.add_widget(btn0)
-        # bigbox.add_widget(box0)
-        #
-        # box1 = BoxLayout(orientation="vertical")
-        # image1 = TestImage(source='images/icons/favourite.png')
-        # btn1 = ToggleButton(text='favourite')
-        # btn1.bind(on_press=partial(data_tables.on_toggle_xxx, 'favourite'))
-        # box1.add_widget(image1)
-        # box1.add_widget(btn1)
-        # bigbox.add_widget(box1)
-        #
-        # box2 = BoxLayout(orientation="vertical")
-        # image2 = TestImage(source='images/icons/garden.png')
-        # btn2 = ToggleButton(text='garden')
-        # btn2.bind(on_press=partial(data_tables.on_toggle_xxx, 'garden'))
-        # box2.add_widget(image2)
-        # box2.add_widget(btn2)
-        # bigbox.add_widget(box2)
-        #
-        # box3 = BoxLayout(orientation="vertical")
-        # image3 = TestImage(source='images/icons/music.png')
-        # btn3 = ToggleButton(text='music')
-        # btn3.bind(on_press=partial(data_tables.on_toggle_xxx, 'music'))
-        # box3.add_widget(image3)
-        # box3.add_widget(btn3)
-        # bigbox.add_widget(box3)
-        #
-        # box4 = BoxLayout(orientation="vertical")
-        # image4 = TestImage(source='images/icons/quiz.png')
-        # btn4 = ToggleButton(text='quiz')
-        # btn4.bind(on_press=partial(data_tables.on_toggle_xxx, 'quiz'))
-        # box4.add_widget(image4)
-        # box4.add_widget(btn4)
-        # bigbox.add_widget(box4)
-        #
-        # box5 = BoxLayout(orientation="vertical")
-        # image5 = TestImage(source='images/icons/roast.png')
-        # btn5 = ToggleButton(text='roast')
-        # btn5.bind(on_press=partial(data_tables.on_toggle_xxx, 'roast'))
-        # box5.add_widget(image5)
-        # box5.add_widget(btn5)
-        # bigbox.add_widget(box5)
-        #
-        # box6 = BoxLayout(orientation="vertical")
-        # image6 = TestImage(source='images/icons/sport.png')
-        # btn6 = ToggleButton(text='sport')
-        # btn6.bind(on_press=partial(data_tables.on_toggle_xxx, 'sport'))
-        # box6.add_widget(image6)
-        # box6.add_widget(btn6)
-        # bigbox.add_widget(box6)
-
         layout.add_widget(bigbox)
-
-        # total_count = len(data_tables.row_data)
-        # heading = Label(text=str(total_count), color=(1, 0, 0, 1))
-        # layout.add_widget(heading)
 
         layout.add_widget(data_tables)
 
@@ -399,3 +335,59 @@ class Example(MDApp):
 
 
 Example().run()
+
+# box0 = BoxLayout(orientation="vertical")
+# image0 = TestImage(source='images/icons/entertain.png')
+# btn0 = ToggleButton(text='entertain')
+# btn0.bind(on_press=partial(data_tables.on_toggle_xxx, 'entertain'))
+# box0.add_widget(image0)
+# box0.add_widget(btn0)
+# bigbox.add_widget(box0)
+#
+# box1 = BoxLayout(orientation="vertical")
+# image1 = TestImage(source='images/icons/favourite.png')
+# btn1 = ToggleButton(text='favourite')
+# btn1.bind(on_press=partial(data_tables.on_toggle_xxx, 'favourite'))
+# box1.add_widget(image1)
+# box1.add_widget(btn1)
+# bigbox.add_widget(box1)
+#
+# box2 = BoxLayout(orientation="vertical")
+# image2 = TestImage(source='images/icons/garden.png')
+# btn2 = ToggleButton(text='garden')
+# btn2.bind(on_press=partial(data_tables.on_toggle_xxx, 'garden'))
+# box2.add_widget(image2)
+# box2.add_widget(btn2)
+# bigbox.add_widget(box2)
+#
+# box3 = BoxLayout(orientation="vertical")
+# image3 = TestImage(source='images/icons/music.png')
+# btn3 = ToggleButton(text='music')
+# btn3.bind(on_press=partial(data_tables.on_toggle_xxx, 'music'))
+# box3.add_widget(image3)
+# box3.add_widget(btn3)
+# bigbox.add_widget(box3)
+#
+# box4 = BoxLayout(orientation="vertical")
+# image4 = TestImage(source='images/icons/quiz.png')
+# btn4 = ToggleButton(text='quiz')
+# btn4.bind(on_press=partial(data_tables.on_toggle_xxx, 'quiz'))
+# box4.add_widget(image4)
+# box4.add_widget(btn4)
+# bigbox.add_widget(box4)
+#
+# box5 = BoxLayout(orientation="vertical")
+# image5 = TestImage(source='images/icons/roast.png')
+# btn5 = ToggleButton(text='roast')
+# btn5.bind(on_press=partial(data_tables.on_toggle_xxx, 'roast'))
+# box5.add_widget(image5)
+# box5.add_widget(btn5)
+# bigbox.add_widget(box5)
+#
+# box6 = BoxLayout(orientation="vertical")
+# image6 = TestImage(source='images/icons/sport.png')
+# btn6 = ToggleButton(text='sport')
+# btn6.bind(on_press=partial(data_tables.on_toggle_xxx, 'sport'))
+# box6.add_widget(image6)
+# box6.add_widget(btn6)
+# bigbox.add_widget(box6)
