@@ -1,0 +1,233 @@
+WindowManager:
+    MainWindow:
+    MapWindow:
+    SecondWindow:
+
+<MainWindow>:
+    name: "main"
+    BoxLayoutPub:
+        orientation: "vertical"
+        BoxLayoutHeader:
+        StackBtns:
+        ClassBuiltTable:
+        Button:
+            text: "page 2"
+            on_release:
+                app.root.current = "map"
+                root.manager.transition.direction = "left"
+
+<BoxLayoutHeader>:
+    orientation: "horizontal"
+    Label:
+        text: "thepubpicker.com"
+        font_name: "fonts/open-sans/OpenSans-Regular.ttf"
+        font_size: "20dp"
+        color: 0,0,0,1
+        pos_hint: {"center_x": .5}
+
+
+<BoxLayoutSearch>:
+    orientation: "horizontal"
+    TextInput:
+        id: search_text
+        text: "enter search here"
+        multiline: False
+        on_text_validate: root.on_text_validate(self)
+    Button:
+        text: root.assigned_text
+        on_press: root.on_search_click()
+    Slider:
+        min: 0
+        max: 100
+        on_value: root.on_value_slide(self)
+    Label:
+        text: root.slider_value
+    Label:
+        text: root.text_input
+
+<StackBtns>:
+    #orientation: "lr-tb"
+    pos_hint: { "center_x": .5 }
+    rows: 1
+    padding: 20
+    spacing: 20
+    ToggleButton:
+        id: "entertain_toggle"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_state: root.on_toggle_button(self, "entertain")
+        Image:
+            source: "images/icons/entertain.png"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    ToggleButton:
+        id: "favourite_toggle"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_state: root.on_toggle_button(self, "favourite")
+        Image:
+            source: "images/icons/favourite.png"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    ToggleButton:
+        id: "garden_toggle"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_state: root.on_toggle_button(self, "garden")
+        Image:
+            source: "images/icons/garden.png"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    ToggleButton:
+        id: "music_toggle"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_state: root.on_toggle_button(self, "music")
+        Image:
+            source: "images/icons/music.png"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    ToggleButton:
+        id: "quiz_toggle"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_state: root.on_toggle_button(self, "quiz")
+        Image:
+            source: "images/icons/quiz.png"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    ToggleButton:
+        id: "roast_toggle"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_state: root.on_toggle_button(self, "roast")
+        Image:
+            source: "images/icons/roast.png"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    ToggleButton:
+        id: "sport_toggle"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_state: root.on_toggle_button(self, "sport")
+        Image:
+            source: "images/icons/sport.png"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    Button:
+        id: "btn"
+        text:"press me"
+        size_hint: None, None
+        size: "50dp", "100dp"
+        background_normal: ''
+        background_color: 1, 1, 1, 1
+        on_press: root.on_press_update()
+
+    Label:
+        size_hint: None, None
+        size: "150dp", "100dp"
+        text: root.list_of_pubs
+        color: 0,0,0,1
+
+
+<MapWindow>:
+    name: "map"
+    BoxLayoutPub:
+        Button:
+            text: "home button"
+            size_hint: None, None
+            size: "100dp","25dp"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+        MapViewPub:
+            zoom: 10
+            lat: 51.5
+            lon: -0.01
+            on_zoom:
+                self.zoom = 10 if self.zoom > 10 else self.zoom
+            on_lat:
+                self.start_getting_pubs_in_map()
+            on_lon:
+                self.start_getting_pubs_in_map()
+            #MapMarkerPopup:
+            #    lat: 51.5
+            #    lon: -0.01
+
+        Button:
+            text: "2nd page"
+            size_hint: None, None
+            size: "100dp","25dp"
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+
+<SecondWindow>:
+    name: "second"
+
+    BoxLayoutPub:
+        Button:
+            text: "header"
+            size_hint: 0.8, None
+            #width: "200dp"
+            height: "50dp"
+            # x, center_x, right
+            # y, center_y, top
+            pos_hint: { "center_x": 0.5 }
+        Switch:
+            id: power_switch
+            active: True
+        Slider:
+            id: my_slider
+            min: 25
+            max: 75
+            value: 50
+            disabled: not power_switch.active
+        Label:
+            text: str(my_slider.value)
+
+        ProgressBar:
+            max: 100
+            value: my_slider.value
+
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            Button:
+                text: "boxInBox - A"
+            Button:
+                text: "boxInBox - B"
+            Button:
+                text: "boxInBox - C"
+            Button:
+                text: "boxInBox - D"
+
+        ImageLayoutQuick:
+            cols: 7
+            size_hint: None, None
+            #allow_stretch: True
+
+        Label:
+            size: "100dp", "100dp"
+
+        Button:
+            text: "home page 1"
+            size_hint: None, None
+            size: "100dp","25dp"
+            on_release:
+                app.root.current = "map"
+                root.manager.transition.direction = "right"
