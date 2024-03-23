@@ -4,6 +4,7 @@ import psycopg2
 import pandas as pd
 from threading import Thread, Lock, current_thread
 from sqlalchemy.engine import URL
+from config import Configurations
 
 
 class MultiThreadingPub:
@@ -12,20 +13,21 @@ class MultiThreadingPub:
     # # # Threading with database queries # # #
     # # # # # # # # # # # # # # # # # # # # #
     def __init__(self):
+        env_vars = Configurations.get_config()
         self.db_conn = psycopg2.connect(
-                database="deb2u2ehdm8ih3",
-                user="bjoonismanuyqb",
-                password="42c662ab36a741716575f3e0101741349280622fff71ce246b15410de5c460d6",
-                host="ec2-54-76-132-202.eu-west-1.compute.amazonaws.com",
-                port='5432'
+                database=env_vars['db_name'],
+                user=env_vars['db_user'],
+                password=env_vars['db_password'],
+                host=env_vars['db_host'],
+                port=env_vars['db_port']
             )
         self.url = URL.create(
                 drivername='postgresql',
-                database="deb2u2ehdm8ih3",
-                username="bjoonismanuyqb",
-                password="42c662ab36a741716575f3e0101741349280622fff71ce246b15410de5c460d6",
-                host="ec2-54-76-132-202.eu-west-1.compute.amazonaws.com",
-                port=5432
+                database=env_vars['db_name'],
+                username=env_vars['db_user'],
+                password=env_vars['db_password'],
+                host=env_vars['db_host'],
+                port=env_vars['db_port']
                 )
 
     def query_pub_record(self, sql):
