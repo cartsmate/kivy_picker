@@ -42,15 +42,9 @@ class MultiThreadingPub:
         for res in result:
             table_headers.append(res[0])
 
-        # filter = round(random.uniform(4.1, 4.9), 1)
-        # print('filter', filter)
-        # sql = f"select * from thepubpicker.pub_record d where ranking = '{filter}' order by detail_name limit 10"
-        # print('sql', sql)
-        # # curs_obj.execute(f"""select * from thepubpicker.pub_record d where ranking == {filter} limit 10 order by detail_name""")
-
         curs_obj.execute(sql)
         result = curs_obj.fetchall()
-        print('result', result)
+        # print('result', result)
         global df_pub_record
         df_pub_record = pd.DataFrame(result, columns=table_headers)
 
@@ -82,9 +76,9 @@ class MultiThreadingPub:
         thread7.join()
 
         # df_dict = {"df_daily_event": df_daily_event,
-        df_dict = { "df_pub_record": df_pub_record }
+        df_dict = {"df_pub_record": df_pub_record }
 
-        print(time.process_time() - start)
+        # print(time.process_time() - start)
 
         return df_dict
 
