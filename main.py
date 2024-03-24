@@ -46,69 +46,9 @@ class WindowManager(ScreenManager):
     pass
 
 
-# class AppBuilder(MDApp):
-#     def build(self):
-#         kv = Builder.load_file('kv_files/KivyPub_20240322.kv')
-#         return kv
-#
-#
-# if __name__ == "__main__":
-#     AppBuilder().run()
-
-# Builder.load_string('''
-# <TestButton>:
-#     text: "Submit"
-#     on_press: root.click_button()
-# ''')
-
-
-# class TestButton(Button):
-#
-#     # def click_button(self):
-#     #     print('button clicked')
-#     #     print(self)
-#
+# class TestScreen(Screen):
 #     pass
 
-class TestScreen(Screen):
-    # list_of_filters = StringProperty("list_of_filters")
-    # filters_list = []
-    #
-    # def on_state(self, tb, id):
-    #     print('ON STATE - screen')
-    #     print(tb)
-    #     print(id)
-    #     print(tb.state)
-    #     if tb.state == 'normal':
-    #         # widget.text = 'ON'
-    #         self.filters_list.remove(id)
-    #     else:
-    #         # widget.text = 'OFF'
-    #         self.filters_list.append(id)
-    #     self.list_of_filters = str(self.filters_list)
-    #     print(self.list_of_filters)
-    #     TestDataTable.table_update(self.filters_list)
-    #     # TestDataTable.target = self.list_of_filters
-    #
-    # def press(self, instance):
-    #     print('SCREEN PRINT')
-    #
-    # def test_child(self):
-    #     print('INSIDE data table TEST child METHOD')
-    #     print(self)
-    #
-    #     # self.remove_widget()
-    #     for child in self.children:
-    #         print('child - rd1')
-    #         print(child)
-
-    pass
-
-# class TestToggleButton(ToggleButton):
-#     def on_toggle(self):
-#         print('TOGGLE ON')
-#         print(self)
-#     pass
 
 class TestDataTable(MDDataTable):
     target = ObjectProperty()
@@ -119,126 +59,8 @@ class TestDataTable(MDDataTable):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         row_datas = GetData().get_data_all()
-        # self.column_data = [
-        #                   ("No.", dp(15)),
-        #                   ("Pub Name", dp(65)),
-        #                   ("Ranking", dp(25)),
-        #                   ("Station", dp(50)),
-        #               ],
+
         self.row_data = row_datas
-
-    # def press(self, instance):
-    #     print('TABLE PRINT')
-    #     self.row_data = GetData().get_data_entertain()
-    #
-    # def press2(self, instance):
-    #     print('TABLE PRINT2')
-    #     self.row_data = GetData().get_data_favourite()
-
-    # def on_toggle_filter(self, widget, id):
-    #     print('INSIDER toggle filter')
-    #     print(f"{id} button clicked", widget)
-    #     # if widget.state == 'normal':
-    #     #     # widget.text = 'ON'
-    #     #     self.actual_list.remove(id)
-    #     # else:
-    #     #     # widget.text = 'OFF'
-    #     #     self.actual_list.append(id)
-    #     # self.list_of_pubs = str(self.actual_list)
-    #
-    # def table_update(self, list_):
-    #     print(list_)
-
-    # def on_toggle_entertain(self, instance, id):
-    #     print('TABLE TOGGLE entertain')
-    #     print('instance', instance)
-    #     if instance in self.actual_list:
-    #         self.actual_list.remove(instance)
-    #     else:
-    #         self.actual_list.append(instance)
-    #     self.list_of_pubs = str(self.actual_list)
-    #     print('actual_list', str(self.actual_list))
-    #     print('list_of_pubs', str(self.list_of_pubs))
-    #     # self.row_data = GetData().get_data_entertain()
-    #     self.row_data = GetData().get_data_filter(self.actual_list)
-    #
-    # def on_toggle_favourite(self, instance, id):
-    #     print('TABLE TOGGLE favourite')
-    #     print('instance', instance)
-    #     if instance in self.actual_list:
-    #         self.actual_list.remove(instance)
-    #     else:
-    #         self.actual_list.append(instance)
-    #     self.list_of_pubs = str(self.actual_list)
-    #     print('actual_list', str(self.actual_list))
-    #     print('list_of_pubs', str(self.list_of_pubs))
-    #     # self.row_data = GetData().get_data_favourite()
-    #     self.row_data = GetData().get_data_filter(self.actual_list)
-    #
-    # def on_toggle_garden(self, instance, id):
-    #     print('TABLE TOGGLE garden')
-    #     print('instance', instance)
-    #     if instance in self.actual_list:
-    #         self.actual_list.remove(instance)
-    #     else:
-    #         self.actual_list.append(instance)
-    #     self.list_of_pubs = str(self.actual_list)
-    #     print('actual_list', str(self.actual_list))
-    #     print('list_of_pubs', str(self.list_of_pubs))
-    #     # self.row_data = GetData().get_data_garden()
-    #     self.row_data = GetData().get_data_filter(self.actual_list)
-    #
-    # def on_toggle_music(self, instance, id):
-    #     print('TABLE TOGGLE music')
-    #     print('instance', instance)
-    #     if instance in self.actual_list:
-    #         self.actual_list.remove(instance)
-    #     else:
-    #         self.actual_list.append(instance)
-    #     self.list_of_pubs = str(self.actual_list)
-    #     print('actual_list', str(self.actual_list))
-    #     print('list_of_pubs', str(self.list_of_pubs))
-    #     # self.row_data = GetData().get_data_music()
-    #     self.row_data = GetData().get_data_filter(self.actual_list)
-    #
-    # def on_toggle_quiz(self, instance, id):
-    #     print('TABLE TOGGLE quiz')
-    #     print('instance', instance)
-    #     if instance in self.actual_list:
-    #         self.actual_list.remove(instance)
-    #     else:
-    #         self.actual_list.append(instance)
-    #     self.list_of_pubs = str(self.actual_list)
-    #     print('actual_list', str(self.actual_list))
-    #     print('list_of_pubs', str(self.list_of_pubs))
-    #     # self.row_data = GetData().get_data_quiz()
-    #     self.row_data = GetData().get_data_filter(self.actual_list)
-    #
-    # def on_toggle_roast(self, instance, id):
-    #     print('TABLE TOGGLE roast')
-    #     print('instance', instance)
-    #     if instance in self.actual_list:
-    #         self.actual_list.remove(instance)
-    #     else:
-    #         self.actual_list.append(instance)
-    #     self.list_of_pubs = str(self.actual_list)
-    #     print('actual_list', str(self.actual_list))
-    #     print('list_of_pubs', str(self.list_of_pubs))
-    #     # self.row_data = GetData().get_data_roast()
-    #     self.row_data = GetData().get_data_filter(self.actual_list)
-    #
-    # def on_toggle_sport(self, instance, id):
-    #     print('TABLE TOGGLE sport')
-    #     print('instance', instance)
-    #     if instance in self.actual_list:
-    #         self.actual_list.remove(instance)
-    #     else:
-    #         self.actual_list.append(instance)
-    #     self.list_of_pubs = str(self.actual_list)
-    #     print('actual_list', str(self.actual_list))
-    #     print('list_of_pubs', str(self.list_of_pubs))
-    #     # self.row_data = GetData().get_data_sport(actual_list)
-    #     self.row_data = GetData().get_data_filter(self.actual_list)
 
     def on_toggle_xxx(self, instance, id):
         print('TABLE TOGGLE xxx')
@@ -252,41 +74,17 @@ class TestDataTable(MDDataTable):
         # print('list_of_pubs', str(self.list_of_pubs))
         # self.row_data = GetData().get_data_sport(actual_list)
         self.row_data = GetData().get_data_filter(self.actual_list)
-
-    # def stack_btn(self, instance):
-    #     print('STACK BTN')
-    #
-    # def on_state(self, tb):
-    #     print('ON STATE - tables')
-    #     print(tb)
-    #     print(tb.id)
-    #     print(tb.on_state)
-
     pass
 
-# class EntertainToggleButton(ToggleButton):
-#
-#     def on_state_entertain(self, instance, id):
-#         print(f'{id}on state ETB')
-#         # print(instance)
-#         if instance.state == 'normal':
-#             # widget.text = 'ON'
-#             print('norm')
-#             # self.filters_list.remove(id)
-#         else:
-#             print('down')
-#             # widget.text = 'OFF'
-#             # self.filters_list.append(id)
+
+# class BoxerLayout0(BoxLayout):
 #     pass
-
-class BoxerLayout0(BoxLayout):
-    pass
-class BoxerLayout1(BoxLayout):
-    pass
-class StackerLayout(StackLayout):
-    pass
-class GriderLayout(GridLayout):
-    pass
+# class BoxerLayout1(BoxLayout):
+#     pass
+# class StackerLayout(StackLayout):
+#     pass
+# class GriderLayout(GridLayout):
+#     pass
 class TestImage(Image):
     pass
 # class FilterBox(BoxLayout):
@@ -309,7 +107,8 @@ class Example(MDApp):
             sorted_on='Ranking',
             sorted_order="DSC",
             use_pagination=True,
-            size_hint=(1, 0.8))
+            size_hint=(1, 0.8),
+            rows_num=10)
 
         bigbox = BoxLayout(orientation='horizontal', padding=20, spacing=20, size_hint=(1, 0.2))
 
@@ -391,3 +190,158 @@ Example().run()
 # box6.add_widget(image6)
 # box6.add_widget(btn6)
 # bigbox.add_widget(box6)
+
+
+# class EntertainToggleButton(ToggleButton):
+#
+#     def on_state_entertain(self, instance, id):
+#         print(f'{id}on state ETB')
+#         # print(instance)
+#         if instance.state == 'normal':
+#             # widget.text = 'ON'
+#             print('norm')
+#             # self.filters_list.remove(id)
+#         else:
+#             print('down')
+#             # widget.text = 'OFF'
+#             # self.filters_list.append(id)
+#     pass
+
+
+# class AppBuilder(MDApp):
+#     def build(self):
+#         kv = Builder.load_file('kv_files/KivyPub_20240322.kv')
+#         return kv
+#
+#
+# if __name__ == "__main__":
+#     AppBuilder().run()
+
+# Builder.load_string('''
+# <TestButton>:
+#     text: "Submit"
+#     on_press: root.click_button()
+# ''')
+
+
+# class TestButton(Button):
+#
+#     # def click_button(self):
+#     #     print('button clicked')
+#     #     print(self)
+#
+#     pass
+
+
+# def press(self, instance):
+#     print('TABLE PRINT')
+#     self.row_data = GetData().get_data_entertain()
+#
+# def press2(self, instance):
+#     print('TABLE PRINT2')
+#     self.row_data = GetData().get_data_favourite()
+
+# def on_toggle_filter(self, widget, id):
+#     print('INSIDER toggle filter')
+#     print(f"{id} button clicked", widget)
+#     # if widget.state == 'normal':
+#     #     # widget.text = 'ON'
+#     #     self.actual_list.remove(id)
+#     # else:
+#     #     # widget.text = 'OFF'
+#     #     self.actual_list.append(id)
+#     # self.list_of_pubs = str(self.actual_list)
+#
+# def table_update(self, list_):
+#     print(list_)
+
+# def on_toggle_entertain(self, instance, id):
+#     print('TABLE TOGGLE entertain')
+#     print('instance', instance)
+#     if instance in self.actual_list:
+#         self.actual_list.remove(instance)
+#     else:
+#         self.actual_list.append(instance)
+#     self.list_of_pubs = str(self.actual_list)
+#     print('actual_list', str(self.actual_list))
+#     print('list_of_pubs', str(self.list_of_pubs))
+#     # self.row_data = GetData().get_data_entertain()
+#     self.row_data = GetData().get_data_filter(self.actual_list)
+#
+# def on_toggle_favourite(self, instance, id):
+#     print('TABLE TOGGLE favourite')
+#     print('instance', instance)
+#     if instance in self.actual_list:
+#         self.actual_list.remove(instance)
+#     else:
+#         self.actual_list.append(instance)
+#     self.list_of_pubs = str(self.actual_list)
+#     print('actual_list', str(self.actual_list))
+#     print('list_of_pubs', str(self.list_of_pubs))
+#     # self.row_data = GetData().get_data_favourite()
+#     self.row_data = GetData().get_data_filter(self.actual_list)
+#
+# def on_toggle_garden(self, instance, id):
+#     print('TABLE TOGGLE garden')
+#     print('instance', instance)
+#     if instance in self.actual_list:
+#         self.actual_list.remove(instance)
+#     else:
+#         self.actual_list.append(instance)
+#     self.list_of_pubs = str(self.actual_list)
+#     print('actual_list', str(self.actual_list))
+#     print('list_of_pubs', str(self.list_of_pubs))
+#     # self.row_data = GetData().get_data_garden()
+#     self.row_data = GetData().get_data_filter(self.actual_list)
+#
+# def on_toggle_music(self, instance, id):
+#     print('TABLE TOGGLE music')
+#     print('instance', instance)
+#     if instance in self.actual_list:
+#         self.actual_list.remove(instance)
+#     else:
+#         self.actual_list.append(instance)
+#     self.list_of_pubs = str(self.actual_list)
+#     print('actual_list', str(self.actual_list))
+#     print('list_of_pubs', str(self.list_of_pubs))
+#     # self.row_data = GetData().get_data_music()
+#     self.row_data = GetData().get_data_filter(self.actual_list)
+#
+# def on_toggle_quiz(self, instance, id):
+#     print('TABLE TOGGLE quiz')
+#     print('instance', instance)
+#     if instance in self.actual_list:
+#         self.actual_list.remove(instance)
+#     else:
+#         self.actual_list.append(instance)
+#     self.list_of_pubs = str(self.actual_list)
+#     print('actual_list', str(self.actual_list))
+#     print('list_of_pubs', str(self.list_of_pubs))
+#     # self.row_data = GetData().get_data_quiz()
+#     self.row_data = GetData().get_data_filter(self.actual_list)
+#
+# def on_toggle_roast(self, instance, id):
+#     print('TABLE TOGGLE roast')
+#     print('instance', instance)
+#     if instance in self.actual_list:
+#         self.actual_list.remove(instance)
+#     else:
+#         self.actual_list.append(instance)
+#     self.list_of_pubs = str(self.actual_list)
+#     print('actual_list', str(self.actual_list))
+#     print('list_of_pubs', str(self.list_of_pubs))
+#     # self.row_data = GetData().get_data_roast()
+#     self.row_data = GetData().get_data_filter(self.actual_list)
+#
+# def on_toggle_sport(self, instance, id):
+#     print('TABLE TOGGLE sport')
+#     print('instance', instance)
+#     if instance in self.actual_list:
+#         self.actual_list.remove(instance)
+#     else:
+#         self.actual_list.append(instance)
+#     self.list_of_pubs = str(self.actual_list)
+#     print('actual_list', str(self.actual_list))
+#     print('list_of_pubs', str(self.list_of_pubs))
+#     # self.row_data = GetData().get_data_sport(actual_list)
+#     self.row_data = GetData().get_data_filter(self.actual_list)
