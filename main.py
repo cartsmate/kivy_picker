@@ -15,8 +15,6 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
 
-# from kivymd.uix.screenmanager import ScreenManager
-
 from layouts.box_layout_header import BoxLayoutHeader
 from layouts.box_layout_search import BoxLayoutSearch
 from layouts.data_table import *
@@ -90,7 +88,7 @@ class TestImage(Image):
 # class FilterBox(BoxLayout):
 #     pass
 
-class Example(MDApp):
+class ThePubPicker(MDApp):
 
     def build(self):
 
@@ -133,7 +131,7 @@ class Example(MDApp):
     #     self.data_tables
 
 
-Example().run()
+ThePubPicker().run()
 
 # box0 = BoxLayout(orientation="vertical")
 # image0 = TestImage(source='images/icons/entertain.png')
